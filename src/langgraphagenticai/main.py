@@ -1,3 +1,4 @@
+
 import streamlit as st
 from src.langgraphagenticai.ui.streamlitui.loadui import LoadStreamlitUI
 from src.langgraphagenticai.llm.groqllm import GroqLLM
@@ -21,7 +22,11 @@ def load_langgraph_agenticai_app():
         st.error("Error: Failed to load user input from the UI.")
         return
     
-    user_message = st.chat_input("Enter your message:")
+    # Text input for user message
+    if st.session_state.IsFetchButtonClicked:
+        user_message = st.session_state.timeframe 
+    else :
+        user_message = st.chat_input("Enter your message:")
 
     if user_message:
         try:
